@@ -1,6 +1,6 @@
 void setup() {
   // put your setup code here, to run once:
-  pinMode(13, OUTPUT);
+  pinMode(8, OUTPUT);
 }
 
 void loop() {
@@ -25,19 +25,23 @@ void send_cq_dx() {
   
 void dit() {
   digitalWrite(13, HIGH);
+  tone(8, 700);
   delay(100);
   digitalWrite(13, LOW);
-  delay(100);
-}
-
-void space() {
+  noTone(8);
   delay(100);
 }
 
 void dah() {
   digitalWrite(13, HIGH);
+  tone(8, 700);
   delay(100*3);
   digitalWrite(13, LOW);
+  noTone(8);
+  delay(100);
+}
+
+void space() {
   delay(100);
 }
 
