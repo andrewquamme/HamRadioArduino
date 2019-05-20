@@ -48,6 +48,10 @@ void send_c() {
 }
 
 //Send "D"
+void send_d() {
+  dah(); dit(); dit();
+  space(); space();
+}
 
 //Send "H"
 void send_h() {
