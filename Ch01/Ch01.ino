@@ -72,6 +72,10 @@ void send_k() {
 }
 
 //Send "Q"
+void send_q() {
+  dah(); dah(); dit(); dah();
+  space(); space();
+}
 
 //Send "X"
 
