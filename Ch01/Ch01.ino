@@ -12,7 +12,7 @@ void loop() {
   send_cq_dx();
 }
 
-byte element_wait=100;
+byte element_wait=50;
 
 void send_hi_k() {
     send_h(); send_i();
@@ -68,7 +68,7 @@ void send_d() {
 //Send "H"
 void send_h() {
   dit(); dit(); dit(); dit();
-  space(); space();
+  letter_space();
 }
 //Send "I"
 void send_i() {
