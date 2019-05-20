@@ -1,55 +1,39 @@
+byte led_pin = 13;
+byte buzzer_pin = 8;
+byte slower_pin = 2;
+byte faster_pin = 3;
+
+byte element_wait=100;
+
 void setup() {
-  // put your setup code here, to run once:
-  //LED
-  pinMode(13, OUTPUT);
-  //Buzzer
-  pinMode(8, OUTPUT);
+  pinMode(led_pin, OUTPUT);
+  pinMode(buzzer_pin, OUTPUT);
+  pinMode(slower_pin, INPUT_PULLUP); //Turn on 20K pullup resistors
+  pinMode(faster_pin, INPUT_PULLUP); //on these two pins
+  Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   // send_hi_k();
   send_cq_dx();
 }
 
-byte element_wait=100;
-
-void faster() {
-  element_wait -= 10;
-}
-
-void slower() {
-  element_wait += 10;
-}
-
-void send_hi_k() {
-    send_h(); send_i();
-    word_space();
-    send_k();
-    word_space();
-}
-
-void send_cq_dx() {
-  send_c(); send_q();
-  word_space();
-  send_d(); send_x();
-  word_space();
-}
-  
 void dit() {
-  digitalWrite(13, HIGH);
-  tone(8, 700);
+  check_speed();
+  digitalWrite(led_pin, HIGH);
+  tone(buzzer_pin, 700);
   delay(element_wait);
-  digitalWrite(13, LOW);
-  noTone(8);
+  digitalWrite(led_pin, LOW);
+  noTone(buzzer_pin);
   delay(element_wait);
 }
 void dah() {
-  digitalWrite(13, HIGH);
-  tone(8, 700);
+  check_speed();
+  digitalWrite(led_pin, HIGH);
+  tone(buzzer_pin, 700);
   delay(element_wait*3);
-  digitalWrite(13, LOW);
-  noTone(8);
+  digitalWrite(led_pin, LOW);
+  noTone(buzzer_pin);
   delay(element_wait);
 }
 
@@ -97,4 +81,43 @@ void send_q() {
 void send_x() {
   dah(); dit(); dit(); dah();
   letter_space();
+}
+
+void send_hi_k() {
+    send_h(); send_i();
+    word_space();
+    send_k();
+    word_space();
+}
+
+void send_cq_dx() {
+  send_c(); send_q();
+  word_space();
+  send_d(); send_x();
+  word_space();
+}
+
+void faster() {
+  if (element_wait > 50) {
+    element_wait -= 10;
+  }
+  Serial.print("faster: element_wait = ");
+  Serial.println(element_wait);
+}
+
+void slower() {
+  if (element_wait < 200) {
+    element_wait += 10;
+  }
+  Serial.print("slower: element_wait = ");
+  Serial.println(element_wait);
+}
+
+void check_speed() {
+  if (digitalRead(faster_pin) == LOW) {
+    faster();
+  }
+  if (digitalRead(slower_pin) == LOW) {
+    slower();
+  }
 }
