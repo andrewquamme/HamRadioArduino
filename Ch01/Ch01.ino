@@ -78,6 +78,10 @@ void send_q() {
 }
 
 //Send "X"
+void send_x() {
+  dah(); dit(); dit(); dah();
+  space(); space();
+}
 
 void word_space() {
   space(); space(); space();
