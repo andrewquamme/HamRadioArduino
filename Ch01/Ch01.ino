@@ -12,7 +12,15 @@ void loop() {
   send_cq_dx();
 }
 
-byte element_wait=50;
+byte element_wait=100;
+
+void faster() {
+  element_wait -= 10;
+}
+
+void slower() {
+  element_wait += 10;
+}
 
 void send_hi_k() {
     send_h(); send_i();
