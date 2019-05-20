@@ -1,5 +1,8 @@
 void setup() {
   // put your setup code here, to run once:
+  //LED
+  pinMode(13, OUTPUT);
+  //Buzzer
   pinMode(8, OUTPUT);
 }
 
@@ -8,6 +11,8 @@ void loop() {
   // send_hi_k();
   send_cq_dx();
 }
+
+byte element_wait=100;
 
 void send_hi_k() {
     send_h(); send_i();
@@ -26,67 +31,62 @@ void send_cq_dx() {
 void dit() {
   digitalWrite(13, HIGH);
   tone(8, 700);
-  delay(100);
+  delay(element_wait);
   digitalWrite(13, LOW);
   noTone(8);
-  delay(100);
+  delay(element_wait);
 }
-
 void dah() {
   digitalWrite(13, HIGH);
   tone(8, 700);
-  delay(100*3);
+  delay(element_wait*3);
   digitalWrite(13, LOW);
   noTone(8);
-  delay(100);
+  delay(element_wait);
 }
 
 void space() {
-  delay(100);
+  delay(element_wait);
+}
+void letter_space() {
+  delay(element_wait*2);
+}
+void word_space() {
+  delay(element_wait*6);
 }
 
 //Send "C"
 void send_c() {
   dah(); dit(); dah(); dit();
-  space(); space();
+  letter_space();
 }
-
 //Send "D"
 void send_d() {
   dah(); dit(); dit();
-  space(); space();
+  letter_space();
 }
-
 //Send "H"
 void send_h() {
   dit(); dit(); dit(); dit();
   space(); space();
 }
-
 //Send "I"
 void send_i() {
   dit(); dit();
-  space(); space();
+  letter_space();
 }
-
 //Send "K"
 void send_k() {
   dah(); dit(); dah();
-  space(); space();
+  letter_space();
 }
-
 //Send "Q"
 void send_q() {
   dah(); dah(); dit(); dah();
-  space(); space();
+  letter_space();
 }
-
 //Send "X"
 void send_x() {
   dah(); dit(); dit(); dah();
-  space(); space();
-}
-
-void word_space() {
-  space(); space(); space();
+  letter_space();
 }
