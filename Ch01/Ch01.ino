@@ -5,7 +5,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  send_hi_k();
+  // send_hi_k();
+  send_cq_dx();
 }
 
 void send_hi_k() {
@@ -13,6 +14,13 @@ void send_hi_k() {
     word_space();
     send_k();
     word_space();
+}
+
+void send_cq_dx() {
+  send_c(); send_q();
+  word_space();
+  send_d(); send_x();
+  word_space();
 }
   
 void dit() {
@@ -33,6 +41,14 @@ void dah() {
   delay(100);
 }
 
+//Send "C"
+void send_c() {
+  dah(); dit(); dah(); dit();
+  space(); space();
+}
+
+//Send "D"
+
 //Send "H"
 void send_h() {
   dit(); dit(); dit(); dit();
@@ -50,6 +66,10 @@ void send_k() {
   dah(); dit(); dah();
   space(); space();
 }
+
+//Send "Q"
+
+//Send "X"
 
 void word_space() {
   space(); space(); space();
